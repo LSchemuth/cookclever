@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   height="100"
+   width="100"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="noun_Arrow_3134210.svg"
+   id="svg10"
+   version="1.1"
+   y="0px"
+   x="0px"
+   viewBox="0 0 100 100"
+   data-name="Layer 1">
+  <metadata
+     id="metadata16">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Forward</dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs14" />
+  <sodipodi:namedview
+     inkscape:current-layer="svg10"
+     inkscape:window-maximized="1"
+     inkscape:window-y="-9"
+     inkscape:window-x="-9"
+     inkscape:cy="51.28012"
+     inkscape:cx="50"
+     inkscape:zoom="6.64"
+     showgrid="false"
+     id="namedview12"
+     inkscape:window-height="1001"
+     inkscape:window-width="1920"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0"
+     guidetolerance="10"
+     gridtolerance="10"
+     objecttolerance="10"
+     borderopacity="1"
+     bordercolor="#666666"
+     pagecolor="#ffffff" />
+  <title
+     id="title2">Forward</title>
+  <path
+     id="path4"
+     d="M 50,0 V 0 A 50,50 0 0 0 0,50 v 0 a 50,50 0 0 0 50,50 v 0 a 50,50 0 0 0 50,-50 v 0 A 50,50 0 0 0 50,0 Z m 24.47,51.25 -15.8,15.8 a 1.77,1.77 0 0 1 -2.52,0 1.81,1.81 0 0 1 0,-2.52 L 68.93,51.78 H 26.76 A 1.78,1.78 0 0 1 25,50 1.75,1.75 0 0 1 26.76,48.23 H 68.93 L 56.15,35.44 A 1.77,1.77 0 1 1 58.67,33 l 15.8,15.8 a 1.73,1.73 0 0 1 0,2.45 z" />
+  <text
+     id="text8"
+     font-family="'Helvetica Neue', Helvetica, Arial-Unicode, Arial, Sans-serif"
+     font-weight="bold"
+     font-size="5px"
+     fill="#000000"
+     y="120"
+     x="0" />
+  <text
+     id="text20"
+     y="104.66867"
+     x="-23.945784"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
+     xml:space="preserve"><tspan
+       y="104.66867"
+       x="-23.945784"
+       id="tspan18"
+       sodipodi:role="line"> </tspan></text>
+  <text
+     id="text24"
+     y="116.71687"
+     x="89.608437"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;fill:#000000;fill-opacity:1;stroke:none"
+     xml:space="preserve"><tspan
+       y="116.71687"
+       x="89.608437"
+       id="tspan22"
+       sodipodi:role="line"> </tspan></text>
+</svg>

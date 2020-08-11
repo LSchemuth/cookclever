@@ -1,2 +1,27 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(https://images.pexels.com/photos/1660030/pexels-photo-1660030.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);">
+  <div class="container">
+    <div class="banner-wrapper">
+      <%= image_tag "logo.svg", class: "logoHome" %>
+  
+      <%= form_tag supermarkets_path, class: "form-inline needs-validation form-homepage", novalidate: true, method: :get do %>
+      <label class="sr-only" for="inline-location">Location</label>
+      <div class="location-wrapper" id="inline-content">
+        <i class="fas fa-map-marker-alt location-marker"></i>
+        <%= text_field_tag :location, params[:location], class: "form-control mb-5 location-input-home", placeholder: "Please enter a location", id: "pages_supermarket_address" %>
+        
+        <%= image_submit_tag "arrow_right.svg", class: "submit-home" %>
+        
+  
+        <%#= submit_tag "Let's Go!", class: "btn btn-primary mb-5 btn-home" %>
+      </div>
+      <div class="invalid-feedback">Location can't be blank</div>
+      <div class="valid-feedback">Looks good!</div>
+      
+      <% end %>
+  
+      <h1>Explore healthy and sustainable recipes with <strong style="color: #010059;">CookClever</strong></h1>
+      <p style="opacity: 0.8">Find tasty recipes and save food from being wasted</p>
+  
+    </div>
+  </div>
+</div>
