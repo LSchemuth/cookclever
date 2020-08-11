@@ -1,0 +1,11 @@
+<div class="container mt-4">
+  <% @recipes.each do |recipe|%>
+    <div class="recipe-photo">
+
+    </div>
+    <div class="recipe-card">
+      <h2><%= recipe.title %></h2>
+      <p><%= recipe.supermarket.name %></p>
+    </div>
+  <% end %>
+</div>
