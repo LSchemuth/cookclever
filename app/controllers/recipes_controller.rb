@@ -27,15 +27,17 @@ class RecipesController < ApplicationController
 
   def new
     @recipe = Recipe.new
+    @supermarket = Supermarket.find(params[:supermarket_id])
   end
 
   def create
+    @supermarket = Supermarket.find(params[:supermarket_id])
     @recipe = Recipe.new(recipe_params)
-    @recipe.user = current_user
+    @recipe.supermarket = @supermarket
     if @recipe.save
       redirect_to recipe_path(@recipe), notice: 'Recipe was successfully created.'
     else
-      render :new
+      render :new, notice: 'Recipe was not created.'
     end
   end
 

@@ -1,0 +1,12 @@
+<div class="container container-new-page">
+  <div class="row">
+    <div class="col-5 form-wrapper">
+      <h1>Add a new recipe!</h1>
+      <%= simple_form_for [ @supermarket, @recipe] do |f| %>
+        <%= f.input :title %>
+        <%= f.input :description %>
+        <%= f.submit "Add this recipe", class: "btn btn-primary" %>
+        <%= link_to "Cancel", recipes_path %>
+      <% end %>
+    </div>
+</div>

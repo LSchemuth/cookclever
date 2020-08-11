@@ -3,8 +3,8 @@ Rails.application.routes.draw do
   root to: 'pages#home'
   get '/supermarkets/:id/dashboard', to: 'supermarkets#dashboard'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :recipes do
-    resources :orders, only: [ :new, :create ];
+  resources :recipes, except: [ :new, :create ] do
+    resources :orders, only: [ :new, :create ]
     resources :amounts, only: [ :new, :create ]
   end
 
@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :baskets, only: [ :show ]
 
   resources :supermarkets do
+    resources :recipes, only: [ :new, :create ]
     resources :ingredients
   end
 
