@@ -1,1 +1,50 @@
 // Specific CSS for your home-page
+// Logo
+.banner-wrapper {
+  text-align: center;
+}
+
+.form-homepage {
+  display: inline;
+}
+
+.logoHome {
+  width: 200px;
+}
+
+  
+  .form-control {
+    color: #656565;  
+  }
+  
+  .notice {
+    display: none;
+  }
+
+  // Location-Form
+  .location-wrapper {
+    margin: 0 auto;
+    width: 350px;
+    height: 50px;
+    border-radius: 25px;
+    display: flex;
+    background-color: white;
+    align-items: center;
+  }
+
+  .location-marker {
+    padding: 0 8px;
+  }
+
+
+  .location-input-home {
+    border: none;
+    height: 50px;
+    flex-grow: 4;
+    margin-top: 48px;
+  }
+
+  .submit-home {
+    height: 45px;
+    padding: 0 4px;
+  }
