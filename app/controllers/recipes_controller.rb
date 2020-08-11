@@ -36,7 +36,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     if @recipe.save
-      redirect_to PATH!?, notice: 'Recipe was successfully created.'
+      redirect_to recipe_path(@recipe), notice: 'Recipe was successfully created.'
     else
       render :new
     end
@@ -47,7 +47,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
-      redirect_to PATH!?, notice: 'Recipe was successfully updated.'
+      redirect_to recipe_path(@recipe), notice: 'Recipe was successfully updated.'
     else
       render :edit
     end
@@ -55,7 +55,7 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe.destroy
-    redirect_to PATH?!, notice: 'Recipe was successfully deleted.'
+    redirect_to recipe_path(@recipe), notice: 'Recipe was successfully deleted.'
   end
 
   private
