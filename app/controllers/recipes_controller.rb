@@ -3,6 +3,23 @@ class RecipesController < ApplicationController
 
   def index
     @recipes = Recipe.all
+    @supermarkets = Supermarket.geocoded
+    @markers = @supermarkets.map do |supermarket|
+      supermarket_recipes = ""
+      supermarket.recipes.each_with_index do |recipe, index|
+        if index == supermarket.recipes.size - 1
+          supermarket_recipes += "#{recipe.title}"
+        else
+         supermarket_recipes += "#{recipe.title}, "
+       end
+      end
+      {
+        lat: supermarket.latitude,
+        lng: supermarket.longitude,
+        infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket, supermarket_recipes: supermarket_recipes}),
+        image_url: helpers.asset_url('marker.png')
+      }
+    end
   end
 
   def show
@@ -16,7 +33,7 @@ class RecipesController < ApplicationController
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
     if @recipe.save
-      redirect_to PATH!?, notice: 'Recipe was successfully created.'
+      redirect_to recipe_path(@recipe), notice: 'Recipe was successfully created.'
     else
       render :new
     end
@@ -27,7 +44,7 @@ class RecipesController < ApplicationController
 
   def update
     if @recipe.update(recipe_params)
-      redirect_to PATH!?, notice: 'Recipe was successfully updated.'
+      redirect_to recipe_path(@recipe), notice: 'Recipe was successfully updated.'
     else
       render :edit
     end
@@ -35,7 +52,7 @@ class RecipesController < ApplicationController
 
   def destroy
     @recipe.destroy
-    redirect_to PATH?!, notice: 'Recipe was successfully deleted.'
+    redirect_to recipe_path(@recipe), notice: 'Recipe was successfully deleted.'
   end
 
   private
