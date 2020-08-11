@@ -49,7 +49,7 @@ class SupermarketsController < ApplicationController
     @supermarket = Supermarket.new(supermarket_params)
     @supermarket.user = current_user
     if @supermarket.save
-      redirect_to PATH!?, notice: 'Supermarket was successfully created.'
+      redirect_to supermarket_path(@supermarket), notice: 'Supermarket was successfully created.'
     else
       render :new
     end
@@ -60,7 +60,7 @@ class SupermarketsController < ApplicationController
 
   def update
     if @supermarket.update(supermarket_params)
-      redirect_to PATH!?, notice: 'Supermarket was successfully updated.'
+      redirect_to supermarket_path(@supermarket), notice: 'Supermarket was successfully updated.'
     else
       render :edit
     end
@@ -68,7 +68,7 @@ class SupermarketsController < ApplicationController
 
   def destroy
     @supermarket.destroy
-    redirect_to PATH!?, notice: 'Supermarket was successfully deleted.'
+    redirect_to supermarkets_path, notice: 'Supermarket was successfully deleted.'
   end
 
 

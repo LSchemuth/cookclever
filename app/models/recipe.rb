@@ -4,6 +4,8 @@ class Recipe < ApplicationRecord
   has_many :orders
   has_many :amounts
 
-  
+
   has_many :ingredients, through: :amounts
+
+  has_one_attached :photo
 end

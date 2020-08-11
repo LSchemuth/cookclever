@@ -5,6 +5,7 @@
       <%= simple_form_for [ @supermarket, @recipe] do |f| %>
         <%= f.input :title %>
         <%= f.input :description %>
+        <%= f.input :photo, as: :file %>
         <%= f.submit "Add this recipe", class: "btn btn-primary" %>
         <%= link_to "Cancel", recipes_path %>
       <% end %>
