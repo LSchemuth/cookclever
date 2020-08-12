@@ -7,13 +7,13 @@
         <% @recipes.each do |recipe|%>
           <%= link_to recipe_path(recipe), "data-toggle" => "modal", 'data-target' => "#recipe#{n}" do %>
             <div class="recipe-card">
-  
+
               <% if recipe.photo.attached? %>
                 <%= cl_image_tag recipe.photo.key, height: 200, width: 300, crop: :fill %>
               <% else %>
                 <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" style="width: 50%">
               <% end %>
-              
+
               <div class="recipe-card-infos">
                 <div>
                   <h2><%= recipe.title %></h2>
@@ -28,18 +28,18 @@
 
           <%# Modal %>
           <div class="modal fade" id="<%= "recipe#{n}" %>" tabindex="-1" role="dialog" aria-labelledby="<%= "recipe#{n}Label" %>" aria-hidden="true">
-            <% n += 1 %> 
+            <% n += 1 %>
             <div class="modal-dialog modal-md" role="document">
               <div class="modal-content">
-  
+
                 <%# Modal Header %>
                 <div class="modal-header">
                   <div class="modal-header-image">
-                   
-                    <% unless recipe.photo.nil? %>
-                      <%= cl_image_tag recipe.photo.key, height: 300, width: 400, crop: :fill %>
+
+                    <% if recipe.photo.attached? %>
+                      <%= cl_image_tag recipe.photo.key, height: 200, width: 300, crop: :fill %>
                     <% else %>
-                      <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" />
+                      <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" style="width: 50%">
                     <% end %>
                     <h3 class="card-title"><strong><%= recipe.title %></strong></h3>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -47,7 +47,7 @@
                     </button>
                   </div>
                 </div>
-  
+
                 <%# Modal Body %>
                 <div class="modal-body">
                   <div class="modal-body-info d-flex ">
@@ -80,7 +80,7 @@
                   </div>
 
                 </div>
-  
+
                 <%# Modal Footer %>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-primary modal-footer-button">Add to Cart</button>
@@ -98,7 +98,7 @@
         <%# -------- %>
         <% end %>
       </div>
-    </div> 
+    </div>
     <%# Map %>
 
     <div class="column">
