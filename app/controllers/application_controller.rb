@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   private
 
   def set_basket
-    @basket = Basket.find_by(user_id: current_user.id)
+    if current_user 
+      @basket = Basket.find_by(user_id: current_user.id)
+    end
   end
 end

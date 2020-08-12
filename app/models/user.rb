@@ -6,4 +6,10 @@ class User < ApplicationRecord
 
   has_many :supermarkets
   has_many :baskets
+
+  after_create :create_basket
+
+  def create_basket 
+    Basket.create(user_id: self.id)
+  end
 end
