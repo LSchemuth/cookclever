@@ -4,10 +4,10 @@
 
       <div class="recipe-card">
         <div class="recipe-photo">
-          <% unless recipe.photo.nil? %>
+          <% if recipe.photo.attached? %>
             <%= cl_image_tag recipe.photo.key, height: 200, width: 300, crop: :fill %>
           <% else %>
-            <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" style="width: 100%">
+            <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" style="width: 50%">
           <% end %>
         </div>
         <h2><%= recipe.title %></h2>
