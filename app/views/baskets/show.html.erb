@@ -1,1 +1,21 @@
-<h1>Basket in progress!</h1>
+<div class="container mt-4">
+  <h1>My Basket</h1>
+  <div class="orders">
+    <% @orders.each do |order|%>
+      <div class="order-card">
+        <p class="order-title"><%= order.recipe.title %></p>
+        <p class="order-price"><%= order.recipe.amounts.first.ingredient.price %>€</p>
+      </div>
+    <% end %>
+  </div>
+  <div class="total-price">
+    <% total = 0 %>
+    <% @orders.each do |order| %>
+      <% order.recipe.amounts.each do |amount| %>
+        <% total += amount.ingredient.price %>
+      <% end %>
+    <% end %>
+    <p>Total: <%= total %>€</p>
+  </div>
+</div>
+
