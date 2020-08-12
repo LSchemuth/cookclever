@@ -4,7 +4,9 @@
     <% @orders.each do |order|%>
       <div class="order-card">
         <p class="order-title"><%= order.recipe.title %></p>
+        <% unless order.recipe.amounts.empty? %>
         <p class="order-price"><%= order.recipe.amounts.first.ingredient.price %>€</p>
+        <% end %>
       </div>
     <% end %>
   </div>
