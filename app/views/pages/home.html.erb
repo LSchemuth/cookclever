@@ -1,9 +1,48 @@
+<%# -----Navbar----- %>
+<div class="navbar navbar-expand-sm navbar-light navbar-home" style="position: fixed">
+  <%= link_to "#", class: "navbar-brand" do %>
+    <%#= image_tag "https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/logo.png" %>
+    <% end %>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <% if user_signed_in? %>
+        <li class="nav-item active">
+          <%= link_to "Home", "#", class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Messages", "#", class: "nav-link" %>
+        </li>
+        <li class="nav-item dropdown">
+          <%= image_tag "https://kitt.lewagon.com/placeholder/users/ssaunier", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+            <%= link_to "Action", "#", class: "dropdown-item" %>
+            <%= link_to "Another action", "#", class: "dropdown-item" %>
+            <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+          </div>
+        </li>
+      <% else %>
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+
+<%# -----Banner incl. Location Search----- %>
+
 <div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(https://images.pexels.com/photos/1660030/pexels-photo-1660030.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260);">
   <div class="container">
     <div class="banner-wrapper">
       <%= image_tag "logo.svg", class: "logoHome" %>
   
-      <%= form_tag supermarkets_path, class: "form-inline needs-validation form-homepage", novalidate: true, method: :get do %>
+      <%= form_tag recipes_path, class: "form-inline needs-validation form-homepage", novalidate: true, method: :get do %>
       <label class="sr-only" for="inline-location">Location</label>
       <div class="location-wrapper" id="inline-content">
         <i class="fas fa-map-marker-alt location-marker"></i>
@@ -25,3 +64,4 @@
     </div>
   </div>
 </div>
+

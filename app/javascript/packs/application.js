@@ -37,3 +37,15 @@ document.addEventListener('turbolinks:load', () => {
   initMapbox();
   initAutocomplete();
 });
+
+
+var prevScrollpos = window.pageYOffset;
+window.onscroll = function() {
+  var currentScrollPos = window.pageYOffset;
+  if (prevScrollpos > currentScrollPos) {
+    document.querySelector(".navbar-home").style.top = "0";
+  } else {
+    document.querySelector(".navbar-home").style.top = "-100px";
+  }
+  prevScrollpos = currentScrollPos;
+}
