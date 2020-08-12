@@ -19,7 +19,11 @@
                   <h2><%= recipe.title %></h2>
                   <div class="d-flex justify-content-between">
                     <p><%= recipe.supermarket.name %></p>
-                    <p><strong>9.95 €</strong></p>
+                    <% price = 0 %>
+                    <% recipe.amounts.each do |amount| %>
+                      <% price += amount.ingredient.price %>
+                    <% end %>
+                    <p><strong><%= price %> €</strong></p>
                   </div>
                 </div>
               </div>
@@ -53,12 +57,16 @@
                   <div class="modal-body-info d-flex ">
                     <div class="modal-body-info-item"><strong>Prep time:</strong></div>
                     <div class="modal-body-info-item"><strong>Calories:</strong></div>
+                    <% price = 0 %>
+                    <% recipe.amounts.each do |amount| %>
+                      <% price += amount.ingredient.price %>
+                    <% end %>
                     <div class="modal-body-info-item"><strong>Price:</strong></div>
                   </div>
                   <div class="modal-body-info d-flex justify-content-between" id="body-info-lower">
                     <div class="modal-body-info-item">25 mins</div>
                     <div class="modal-body-info-item">360 kcal</div>
-                    <div class="modal-body-info-item">9.95 €</div>
+                    <div class="modal-body-info-item"><%= price %> €</div>
                   </div>
 
                   <div class="container-ingredients">
@@ -83,7 +91,7 @@
 
                 <%# Modal Footer %>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-primary modal-footer-button">Add to Cart</button>
+                  <%= link_to "Add to Cart", recipe_orders_path(recipe), method: :post, class: "btn btn-primary modal-footer-button"%>
                 </div>
               </div>
             </div>
