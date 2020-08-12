@@ -1,26 +1,114 @@
-<div class="row">
-  <div class="container mt-4 col 12 col-md-8">
-    <% @recipes.each do |recipe|%>
-
-      <div class="recipe-card">
-        <div class="recipe-photo">
-          <% unless recipe.photo.nil? %>
-            <%= cl_image_tag recipe.photo.key, height: 200, width: 300, crop: :fill %>
-          <% else %>
-            <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" style="width: 100%">
+<div class="container container-main">
+  <%# @reservation = Reservation.new %>
+  <div class="row">
+    <div class="column">
+      <div class="cards">
+        <% n = 0  %>
+        <% @recipes.each do |recipe|%>
+          <%= link_to recipe_path(recipe), "data-toggle" => "modal", 'data-target' => "#recipe#{n}" do %>
+            <div class="recipe-card">
+  
+              <% if recipe.photo.attached? %>
+                <%= cl_image_tag recipe.photo.key, height: 200, width: 300, crop: :fill %>
+              <% else %>
+                <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" style="width: 50%">
+              <% end %>
+              
+              <div class="recipe-card-infos">
+                <div>
+                  <h2><%= recipe.title %></h2>
+                  <div class="d-flex justify-content-between">
+                    <p><%= recipe.supermarket.name %></p>
+                    <p><strong>9.95 €</strong></p>
+                  </div>
+                </div>
+              </div>
+            </div>
           <% end %>
-        </div>
-        <h2><%= recipe.title %></h2>
-        <p><%= recipe.supermarket.name %></p>
+
+          <%# Modal %>
+          <div class="modal fade" id="<%= "recipe#{n}" %>" tabindex="-1" role="dialog" aria-labelledby="<%= "recipe#{n}Label" %>" aria-hidden="true">
+            <% n += 1 %> 
+            <div class="modal-dialog modal-md" role="document">
+              <div class="modal-content">
+  
+                <%# Modal Header %>
+                <div class="modal-header">
+                  <div class="modal-header-image">
+                   
+                    <% unless recipe.photo.nil? %>
+                      <%= cl_image_tag recipe.photo.key, height: 300, width: 400, crop: :fill %>
+                    <% else %>
+                      <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" />
+                    <% end %>
+                    <h3 class="card-title"><strong><%= recipe.title %></strong></h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                </div>
+  
+                <%# Modal Body %>
+                <div class="modal-body">
+                  <div class="modal-body-info d-flex ">
+                    <div class="modal-body-info-item"><strong>Prep time:</strong></div>
+                    <div class="modal-body-info-item"><strong>Calories:</strong></div>
+                    <div class="modal-body-info-item"><strong>Price:</strong></div>
+                  </div>
+                  <div class="modal-body-info d-flex justify-content-between" id="body-info-lower">
+                    <div class="modal-body-info-item">25 mins</div>
+                    <div class="modal-body-info-item">360 kcal</div>
+                    <div class="modal-body-info-item">9.95 €</div>
+                  </div>
+
+                  <div class="container-ingredients">
+                    <div class="row">
+                      <div class="col">Column</div>
+                      <div class="col">Column</div>
+                      <div class="w-100"></div>
+                      <div class="col">Column</div>
+                      <div class="col">Column</div>
+                      <div class="w-100"></div>
+                      <div class="col">Column</div>
+                      <div class="col">Column</div>
+                    </div>
+                  </div>
+
+                  <div class="recipe-instructions">
+                    <h5><strong>Recipe Instructions</strong></h5>
+                    <p><%= recipe.description %></p>
+                  </div>
+
+                </div>
+  
+                <%# Modal Footer %>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-primary modal-footer-button">Add to Cart</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+
+
+
+
+        <%# -------- %>
+        <% end %>
       </div>
-    <% end %>
-  </div>
-  <br>
-  <div id="map" class="col-6 col-md-4"
-    style="width: 100%; height: 600px;"
-    data-markers="<%= @markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    </div> 
+    <%# Map %>
+
+    <div class="column">
+      <div id="map"
+        style="height: 600px;"
+        data-markers="<%= @markers.to_json %>"
+        data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+      </div>
+    </div>
+
+    <%# -------- %>
   </div>
 </div>
-
-
