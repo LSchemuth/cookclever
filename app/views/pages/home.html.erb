@@ -46,7 +46,7 @@
       <label class="sr-only" for="inline-location">Location</label>
       <div class="location-wrapper" id="inline-content">
         <i class="fas fa-map-marker-alt location-marker"></i>
-        <%= text_field_tag :location, params[:location], class: "form-control mb-5 location-input-home", placeholder: "Please enter a location", id: "pages_supermarket_address" %>
+        <%= text_field_tag :location, params[:location], class: "form-control mb-5 location-input-home float-left", placeholder: "Please enter a location", id: "pages_supermarket_address", style: "width: 250px" %>
         
         <%= image_submit_tag "arrow_right.svg", class: "submit-home" %>
         
