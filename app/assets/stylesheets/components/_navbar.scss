@@ -29,6 +29,18 @@
   margin: 0;
  }
 
+ .basket-icon {
+  margin: 8px 16px;
+ }
+
+ .fas {
+  color: $bold-green;
+  opacity: 0.6;
+  &:hover {
+    opacity: 1;
+    transition-duration: 0.2s;
+  }
+ }
 
 //  Navbar Home
 
