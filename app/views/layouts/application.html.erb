@@ -2,11 +2,16 @@
 <html>
   <head>
     <title>Cookclever</title>
+    <link rel="icon" href="https://res-console.cloudinary.com/djkbgxkq1/thumbnails/v1/image/upload/v1597235493/Q29va0NsZXZlci9Mb2dvX3dsb2xiNQ==/preview">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%# Mapbox CSS  %>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
+    <%# ----------- %>
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>

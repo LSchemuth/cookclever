@@ -31,6 +31,9 @@
     display: flex;
     background-color: white;
     align-items: center;
+    .ap-input-icon {
+      display: none;
+    }
   }
 
   .location-marker {
