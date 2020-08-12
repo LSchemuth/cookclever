@@ -10,6 +10,7 @@
 
 .logoHome {
   width: 200px;
+  margin: 30vh 0 75px;
 }
 
   
@@ -23,7 +24,7 @@
 
   // Location-Form
   .location-wrapper {
-    margin: 0 auto;
+    margin: 0 auto 20px;
     width: 350px;
     height: 50px;
     border-radius: 25px;
@@ -36,7 +37,6 @@
     padding: 0 8px;
   }
 
-
   .location-input-home {
     border: none;
     height: 50px;
@@ -48,3 +48,41 @@
     height: 45px;
     padding: 0 4px;
   }
+
+//  Navbar Home
+
+.navbar-home {
+  justify-content: space-between;
+  position: fixed;
+  transition: top 0.6s;
+  background: $info;
+  opacity: 0.8;
+  position: absolute;
+  width: 100vw;
+}
+
+.navbar-home .navbar-collapse {
+  flex-grow: 0;
+}
+
+.navbar-home .navbar-brand img {
+  width: 90px;
+}
+
+.navbar-home .add-btn {
+  border-radius: 25px;
+  background-color: white;
+  border: 1px $warning solid;
+    .nav-item {
+      color: $warning;
+    }
+ }
+
+ .navbar {
+   padding: 8px 80px;
+ }
+
+ .navbar-brand {
+  padding: 0;
+  margin: 0;
+ }
