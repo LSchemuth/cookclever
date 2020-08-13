@@ -2,6 +2,8 @@
 # The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
 require "open-uri"
 require 'faker'
+require 'pry-byebug'
+require 'json'
 
 # Examples:
 # Recipe.destroy_all
@@ -25,6 +27,8 @@ require 'faker'
 # recipe.photo.attach(io: file, filename: recipe.title, content_type: 'image/jpg')
 
 puts "Cleaning database..."
+Amount.destroy_all
+Ingredient.destroy_all
 Recipe.destroy_all
 Supermarket.destroy_all
 Basket.destroy_all
@@ -33,98 +37,112 @@ User.destroy_all
 puts "Creating user"
 user = User.create(email: "lschemuth@hotmail.de", password: "111111")
 
-puts 'Creating 100 fake supermarkets...'
-100.times do
-  supermarket = Supermarket.new(
-    name:  Faker::Restaurant.name,
-    address: 
-      (addresses = JSON.parse(File.read'/home/pmoeller/code/LSchemuth/cookclever/addresses.json')
-      addresses.each do |address|
-        Supermarket.address.create(address: address["address, city"])
-      end)
-
-
-    # address: "#{Faker::Address.street_name}, #{Faker::Address.city}",
-    recipe: 
-    rand(2..10).times do
-      recipe = Recipe.new(
-        title:  Faker::Food.dish,
-        description: Faker::Food.description,
-        supermarket: self.id,
-        photo:     
-        ingredient: rand(2..10).times do
-            ingredient = Ingredient.new(
-              name:  Faker::Food.ingredient,
-              price: Faker::Number.decimal(l_digits= 2, r_digits= 2).within(range: 0..4),
-              expiration_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
-              amounts: Faker::Food.measurement,
-              supermarket_id: self.id
-            )
-          end,
-      )
-    end
-
-    user: user
-    # rating:  rand(0..5)
-  )
-  supermarket.save!
+puts 'Creating 56 fake supermarkets...'
+counter = 0
+addresses_array = []
+addresses = JSON.parse(File.read'/home/pmoeller/code/LSchemuth/cookclever/addresses.json')
+addresses.each do |address|
+  addresses_array << address["address"]
 end
 
+supermarket_name = [ "Rewe", "Lidl", "Edeka", "Albert Heijn", "Carrefour", "Aldi", "Tesco", "Sainsbury's" ]
 
+15.times do
+  supermarket = Supermarket.new(
+    name: supermarket_name.sample,
+    address: addresses_array[counter],
+    # address: addresses[counter],
+    user: user  
+    )
+  counter += 1
+
+  supermarket.save!
+
+  recipes = []    
+  rand(2..7).times do
+    recipe = Recipe.new(
+      title:  Faker::Food.dish,
+      description: Faker::Food.description,
+      supermarket_id: supermarket.id,
+      )
+    file = URI.open("https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1050&q=80")
+    recipe.photo.attach(io: file, filename: "#{recipe.title}.png", content_type: 'image/png')
+    recipe.save!
+    recipes << recipe
+end
+
+  recipes.each do |recipe|
+    rand(2..10).times do
+      ingredient = Ingredient.create(
+        name:  Faker::Food.ingredient,
+        price:  rand(1..4),
+        # price: Faker::Number.decimal(l_digits= 2, r_digits= 2).within(range: 0..4),
+        expiration_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
+        supermarket_id: supermarket.id
+        )
+      amount = Amount.create(
+        quantity: rand(1..5),
+        unit: Faker::Food.metric_measurement,
+        recipe_id: recipe.id,
+        ingredient_id: ingredient.id
+      ) 
+    end
+  end
+puts "finished one supermarket"
+end
+      
+        
 puts 'Finished!'
-
-
-
-
-
-
-# -----------
-
-# puts 'Creating 100 fake restaurants...'
-# 100.times do
-#   restaurant = Restaurant.new(
-#     name:    Faker::Company.name,
-#     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
-#     rating:  rand(0..5)
-#   )
-#   restaurant.save!
-# end
-# puts 'Finished!'
-
-# # -----------
-
-# puts 'Creating 5 products...'
-# 5.times do |i|
-#   product = Product.create!(
-#     name: Faker::Company.name,
-#     tagline: Faker::Company.catch_phrase
-#   )
-#   puts "#{i + 1}. #{product.name}"
-# end
-# puts 'Finished!'
-
-# require "faker"
-# # TODO: Write a seed to insert 100 posts in the database
-# require 'faker'
-# 100.times do
-#   Post.create(title: Faker::Hacker.say_something_smart, url: Faker::Internet.url,
-#               votes: Faker::Number.within(range: 1..10_000_000))
-# end
-
-# # -----------
-# require 'json'
-
-# puts "Cleaning database..."
-# Ingredient.destroy_all
-
-# puts "Creating ingredients..."
-# url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
-
-# ingredient_data = open(url).read
-# ingredients = JSON.parse(ingredient_data)
-
-# ingredients["drinks"].each do |ingredient|
-#   Ingredient.create(name: ingredient["strIngredient1"])
-# end
-
-# puts "Finished!"
+    
+    
+    
+    # -----------
+    
+    # puts 'Creating 100 fake restaurants...'
+    # 100.times do
+    #   restaurant = Restaurant.new(
+        #     name:    Faker::Company.name,
+        #     address: "#{Faker::Address.street_address}, #{Faker::Address.city}",
+        #     rating:  rand(0..5)
+        #   )
+        #   restaurant.save!
+        # end
+        # puts 'Finished!'
+        
+        # # -----------
+        
+        # puts 'Creating 5 products...'
+        # 5.times do |i|
+        #   product = Product.create!(
+            #     name: Faker::Company.name,
+            #     tagline: Faker::Company.catch_phrase
+            #   )
+            #   puts "#{i + 1}. #{product.name}"
+            # end
+            # puts 'Finished!'
+            
+            # require "faker"
+            # # TODO: Write a seed to insert 100 posts in the database
+            # require 'faker'
+            # 100.times do
+            #   Post.create(title: Faker::Hacker.say_something_smart, url: Faker::Internet.url,
+            #               votes: Faker::Number.within(range: 1..10_000_000))
+            # end
+            
+            # # -----------
+            # require 'json'
+            
+            # puts "Cleaning database..."
+            # Ingredient.destroy_all
+            
+            
+            # url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
+          
+          # ingredient_data = open(url).read
+          # ingredients = JSON.parse(ingredient_data)
+          
+          # ingredients["drinks"].each do |ingredient|
+          #   Ingredient.create(name: ingredient["strIngredient1"])
+          # end
+          
+          # puts "Finished!"

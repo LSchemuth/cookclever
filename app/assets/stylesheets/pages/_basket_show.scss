@@ -1,0 +1,96 @@
+.container-basket {
+    background-color: white;
+    border-radius: 4px;
+    padding: 14px 15px;
+    h2 {
+      text-align: center;
+    }
+    h4 {
+        text-align: center;
+    }
+}
+
+.minus {
+    border: 1px solid;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.minus:hover {
+    border: 1px solid;
+    background-color: #90B46A;
+    i {
+      color: white;
+    }
+}
+
+.plus {
+    border: 1px solid;
+    border-radius: 2px;
+    background-color: white;
+}
+
+.plus:hover {
+    border: 1px solid;
+    background-color: #90B46A;
+    i {
+      color: white;
+    }
+}
+
+.quantity {
+    width: 30px;
+    text-align: center;
+}
+// Deactivate arrows in numeric input
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+
+// Payment Form
+.card-header-payment {
+  background-color: white;
+  padding-top: 0;
+}
+
+.card-footer-payment {
+    background-color: white;
+}
+
+.bg-white {
+  border: 1px solid lightgray;
+  border-radius: 2px;
+}
+
+.rounded {
+    border-radius: 1rem
+}
+
+.nav-pills .nav-link {
+    color: #555
+}
+
+.nav-pills .nav-link.active {
+    color: white
+}
+
+input[type="radio"] {
+    margin-right: 5px
+}
+
+.bold {
+    font-weight: bold
+}
+
+// --------
+

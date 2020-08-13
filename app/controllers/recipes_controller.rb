@@ -21,46 +21,6 @@ class RecipesController < ApplicationController
       }
     end
 
-
-    # if params[:location].present?
-    #   @supermarkets = Supermarket.near(params[:location], 10, order: :distance).geocoded
-    #   @markers = @supermarkets.map do |supermarket|
-    #     supermarket_recipes = ""
-    #     supermarket.recipes.each_with_index do |recipe, index|
-    #       if index == supermarket.recipes.size - 1
-    #         supermarket_recipes += "#{recipe.title}"
-    #       else
-    #        supermarket_recipes += "#{recipe.title}, "
-    #      end
-    #     end
-    #     {
-    #       lat: supermarket.latitude,
-    #       lng: supermarket.longitude,
-    #       infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket, supermarket_recipes: supermarket_recipes}),
-    #       image_url: helpers.asset_url('marker.png')
-    #     }
-    #   end
-    # else
-    #   @supermarkets = Supermarket.geocoded
-    #   @markers = @supermarkets.map do |supermarket|
-    #     supermarket_recipes = ""
-    #     supermarket.recipes.each_with_index do |recipe, index|
-    #       if index == supermarket.recipes.size - 1
-    #         supermarket_recipes += "#{recipe.title}"
-    #       else
-    #        supermarket_recipes += "#{recipe.title}, "
-    #      end
-    #     end
-    #     {
-    #       lat: supermarket.latitude,
-    #       lng: supermarket.longitude,
-    #       infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket, supermarket_recipes: supermarket_recipes}),
-    #       image_url: helpers.asset_url('marker.png')
-    #     }
-    #   end
-    # end
-
-
   end
 
   def show
