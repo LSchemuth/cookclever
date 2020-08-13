@@ -41,7 +41,7 @@
                   <div class="modal-header-image">
 
                     <% if recipe.photo.attached? %>
-                      <%= cl_image_tag recipe.photo.key, height: 200, width: 300, crop: :fill %>
+                      <%= cl_image_tag recipe.photo.key, height: 300, width: 300, crop: :fill %>
                     <% else %>
                       <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" style="width: 50%">
                     <% end %>
@@ -69,7 +69,7 @@
                     <div class="modal-body-info-item"><%= price %> €</div>
                   </div>
 
-                  <div class="container-ingredients">
+                  <%# <div class="container-ingredients">
                     <div class="row">
                       <div class="col">Column</div>
                       <div class="col">Column</div>
@@ -79,6 +79,27 @@
                       <div class="w-100"></div>
                       <div class="col">Column</div>
                       <div class="col">Column</div>
+                    </div>
+                  </div> %>
+
+                  <div class="container-ingredients">
+                    <div class="row row-ingredients">
+                      <div class="column-ingredients">
+                        <div class="ingredient-wrapper">
+                          <% recipe.amounts.each do |amount| %>
+                            <div class="recipe-item">
+                              <%# <span style="color: #5A8F28"> %>
+                              <%= amount.quantity %>
+                              <%= 
+                                str = amount.unit
+                                str.gsub("liter", "l").gsub("centi", "c").gsub("milli", "m").gsub("deci", "d")
+                               %>
+                              <%= amount.ingredient.name %>
+                              <%# </span> %>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
