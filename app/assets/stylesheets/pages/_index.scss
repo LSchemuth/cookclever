@@ -37,13 +37,12 @@
   }
 
   .modal-body {
-    padding: 8px;
+    padding: 8px 16px 8px 16px;
 }
 
   .modal-body-info {
       width: 100%;
       height: 30px;
-      padding-left: 8px;
   }
 
   .modal-body-info-item {
@@ -59,14 +58,13 @@
   .container-ingredients {
     margin: 0;
     h5 {
-      margin: 32px 0 0;
-      text-align: center;
+      margin-top: 32px;
+      margin-bottom: 0;
     }
   }
 
   .column-ingredients {
     width: 100%;
-    padding-left: 8px;
     .ingredient-wrapper {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -82,12 +80,6 @@
 
   .recipe-instructions {
     padding-top: 32px;
-    h5 {
-      text-align: center;
-    }
-    p {
-      margin-left: 8px;
-    }
   }
 
   .modal-footer-button {
