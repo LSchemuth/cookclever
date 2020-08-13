@@ -60,10 +60,28 @@
     margin-left: 16px;
   }
 
+  .column-ingredients {
+    width: 100%;
+    .ingredient-wrapper {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 4px;
+      flex-grow: 1;
+      margin-top: 16px;
+    }
+  }
+
+  .row-ingredients {
+    margin: 0;
+  }
+
   .recipe-instructions {
     padding-top: 32px;
     h5 {
       text-align: center;
+    }
+    p {
+      margin-left: 8px;
     }
   }
 
