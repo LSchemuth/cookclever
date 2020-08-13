@@ -2,27 +2,32 @@ class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :edit, :update, :destroy]
 
   def index
-    @recipes = Recipe.all
-    @supermarkets = Supermarket.geocoded
+    if params[:location].present?
+      @supermarkets = Supermarket.near(params[:location], 50)
+      @recipes = @supermarkets.map { |supermarket| Recipe.where(supermarket_id: supermarket.id) }.flatten
+    else
+      @recipes = Recipe.all
+      @supermarkets = Supermarket.geocoded
+    end
     @markers = @supermarkets.map do |supermarket|
       supermarket_recipes = ""
       supermarket.recipes.each_with_index do |recipe, index|
-        if index == supermarket.recipes.size - 1
-          supermarket_recipes += "#{recipe.title}"
-        else
-         supermarket_recipes += "#{recipe.title}, "
-       end
+       if index == supermarket.recipes.size - 1
+         supermarket_recipes += "#{recipe.title}"
+       else
+        supermarket_recipes += "#{recipe.title}, "
       end
-      {
-        lat: supermarket.latitude,
-        lng: supermarket.longitude,
-        infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket, supermarket_recipes: supermarket_recipes}),
-        image_url: helpers.asset_url('marker.png')
-      }
+     end
+     {
+      lat: supermarket.latitude,
+      lng: supermarket.longitude,
+      infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket, supermarket_recipes: supermarket_recipes}),
+      image_url: helpers.asset_url('marker.png')
+    }
     end
-
   end
 
+  
   def show
   end
 

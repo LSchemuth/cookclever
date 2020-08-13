@@ -40,7 +40,8 @@ user = User.create(email: "lschemuth@hotmail.de", password: "111111")
 puts 'Creating 56 fake supermarkets...'
 counter = 0
 addresses_array = []
-addresses = JSON.parse(File.read'/home/pmoeller/code/LSchemuth/cookclever/addresses.json')
+addresses = JSON.parse(File.read(Rails.root.join('addresses.json')))
+# addresses = JSON.parse(File.read'/home/pmoeller/code/LSchemuth/cookclever/addresses.json')
 addresses.each do |address|
   addresses_array << address["address"]
 end
