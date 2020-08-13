@@ -13,6 +13,8 @@ class OrdersController < ApplicationController
     @order.basket = @basket
     @order.recipe = @recipe
     if @order.save
+      mail = UserMailer.with(restaurant: @restaurant).create_confirmation
+      mail.deliver_now
       redirect_to recipes_path, notice: 'Recipe was successfully added to your basket.'
     else
       render :new, notice: 'Recipe could not be added to your basket.'
