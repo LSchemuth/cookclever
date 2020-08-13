@@ -157,7 +157,24 @@
             </div>
           </div>
           <hr class="mb-4">
-         
+
+          <h5 class="mb-3">Please enter your pick-up time</h5>
+
+
+          <form class="form-inline">
+            <label class="sr-only" for="inline-date">Start-Date</label>
+            <input type="date" class="form-control mr-3 mb-3" id="inline-date" required>
+            <div class="invalid-feedback">Please provide a valid value.</div>
+            <div class="valid-feedback">Looks good!</div>
+          
+            <label class="sr-only" for="inline-time">Start-Time</label>
+            <input type="time" class="form-control mr-3 mb-3" id="inline-time" required>
+            <div class="invalid-feedback">Please provide a valid value.</div>
+            <div class="valid-feedback">Looks good!</div>
+                 
+            <button type="submit" class="btn btn-primary mb-3">Submit</button>
+          </form>
+        
           <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
             items to your cart does not mean booking them.</p>
 
@@ -283,7 +300,7 @@
               </li>
             </ul>
   
-            <button type="button" class="btn btn-primary btn-block">go to checkout</button>
+            <button type="button" class="btn btn-primary btn-block"><strong>Buy</strong></button>
   
           </div>
         </div>
