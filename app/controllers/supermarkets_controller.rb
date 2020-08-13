@@ -1,30 +1,29 @@
 class SupermarketsController < ApplicationController
   before_action :set_supermarket, only: [:show, :edit, :update, :destroy]
-  # add_flash_types :info, :error, :warning
+  add_flash_types :info, :error, :warning
 
   def index
-    @supermarkets = Supermarket.all
-  #   if params[:location].present?
-  #     @supermarkets = Supermarket.near(params[:location], 10, order: :distance).geocoded
-  #     @markers = @supermarkets.map do |supermarket|
-  #       {
-  #         lat: supermarket.latitude,
-  #         lng: supermarket.longitude,
-  #         infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket }),
-  #         image_url: helpers.asset_url('supermarket_marker.png')
-  #       }
-  #     end
-  #   else
-      # @supermarkets = Supermarket.geocoded
-  #     @markers = @supermarkets.map do |supermarket|
-  #       {
-  #         lat: supermarket.latitude,
-  #         lng: supermarket.longitude,
-  #         infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket }),
-  #         image_url: helpers.asset_url('supermarket_marker.png')
-  #       }
-  #     end
-  #   end
+    if params[:location].present?
+      @supermarkets = Supermarket.near(params[:location], 10, order: :distance).geocoded
+      @markers = @supermarkets.map do |supermarket|
+        {
+          lat: supermarket.latitude,
+          lng: supermarket.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket }),
+          image_url: helpers.asset_url('supermarket_marker.png')
+        }
+      end
+    else
+      @supermarkets = Supermarket.geocoded
+      @markers = @supermarkets.map do |supermarket|
+        {
+          lat: supermarket.latitude,
+          lng: supermarket.longitude,
+          infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket }),
+          image_url: helpers.asset_url('supermarket_marker.png')
+        }
+      end
+    end
   end
 
 #   def my_supermarkets

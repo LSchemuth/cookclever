@@ -9,7 +9,7 @@ class User < ApplicationRecord
 
   after_create :create_basket
 
-  def create_basket 
+  def create_basket
     Basket.create(user_id: self.id)
   end
 end
