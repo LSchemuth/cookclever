@@ -29,6 +29,7 @@ require 'json'
 puts "Cleaning database..."
 Amount.destroy_all
 Ingredient.destroy_all
+Order.destroy_all
 Recipe.destroy_all
 Supermarket.destroy_all
 Basket.destroy_all
@@ -53,13 +54,13 @@ supermarket_name = [ "Rewe", "Lidl", "Edeka", "Albert Heijn", "Carrefour", "Aldi
     name: supermarket_name.sample,
     address: addresses_array[counter],
     # address: addresses[counter],
-    user: user  
+    user: user
     )
   counter += 1
 
   supermarket.save!
 
-  recipes = []    
+  recipes = []
   rand(2..7).times do
     recipe = Recipe.new(
       title:  Faker::Food.dish,
@@ -86,19 +87,19 @@ end
         unit: Faker::Food.metric_measurement,
         recipe_id: recipe.id,
         ingredient_id: ingredient.id
-      ) 
+      )
     end
   end
 puts "finished one supermarket"
 end
-      
-        
+
+
 puts 'Finished!'
-    
-    
-    
+
+
+
     # -----------
-    
+
     # puts 'Creating 100 fake restaurants...'
     # 100.times do
     #   restaurant = Restaurant.new(
@@ -109,9 +110,9 @@ puts 'Finished!'
         #   restaurant.save!
         # end
         # puts 'Finished!'
-        
+
         # # -----------
-        
+
         # puts 'Creating 5 products...'
         # 5.times do |i|
         #   product = Product.create!(
@@ -121,7 +122,7 @@ puts 'Finished!'
             #   puts "#{i + 1}. #{product.name}"
             # end
             # puts 'Finished!'
-            
+
             # require "faker"
             # # TODO: Write a seed to insert 100 posts in the database
             # require 'faker'
@@ -129,21 +130,21 @@ puts 'Finished!'
             #   Post.create(title: Faker::Hacker.say_something_smart, url: Faker::Internet.url,
             #               votes: Faker::Number.within(range: 1..10_000_000))
             # end
-            
+
             # # -----------
             # require 'json'
-            
+
             # puts "Cleaning database..."
             # Ingredient.destroy_all
-            
-            
+
+
             # url = "https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list"
-          
+
           # ingredient_data = open(url).read
           # ingredients = JSON.parse(ingredient_data)
-          
+
           # ingredients["drinks"].each do |ingredient|
           #   Ingredient.create(name: ingredient["strIngredient1"])
           # end
-          
+
           # puts "Finished!"
