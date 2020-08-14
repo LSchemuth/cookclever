@@ -18,4 +18,12 @@ class OrdersController < ApplicationController
       render :new, notice: 'Recipe could not be added to your basket.'
     end
   end
+
+  def destroy
+    @order = Order.find(params[:id])
+    @order.destroy
+    redirect_to basket_path(@basket), notice: 'This item was successfully removed from your basket.'
+  end
+
+
 end
