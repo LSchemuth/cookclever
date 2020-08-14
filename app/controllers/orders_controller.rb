@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
     @order.basket = @basket
     @order.recipe = @recipe
     if @order.save
-      redirect_to recipes_path, notice: 'Recipe was successfully added to your basket.'
+      redirect_to recipes_path(location: params[:location]), notice: 'Recipe was successfully added to your basket.'
     else
       render :new, notice: 'Recipe could not be added to your basket.'
     end

@@ -69,7 +69,7 @@
                     <div class="modal-body-info-item"><%= price %> €</div>
                   </div>
 
-                  
+
                   <div class="container-ingredients">
                     <h5><strong>Ingredients</strong></h5>
                     <div class="row row-ingredients">
@@ -79,7 +79,7 @@
                             <div class="recipe-item">
                               <%# <span style="color: #5A8F28"> %>
                               <%= amount.quantity %>
-                              <%= 
+                              <%=
                                 str = amount.unit
                                 str.gsub("liter", "l").gsub("centi", "c").gsub("milli", "m").gsub("deci", "d")
                                %>
@@ -101,7 +101,10 @@
 
                 <%# Modal Footer %>
                 <div class="modal-footer">
-                  <%= link_to "Add to Cart", recipe_orders_path(recipe), method: :post, class: "btn btn-primary modal-footer-button"%>
+                  <%= form_tag recipe_orders_path(recipe), method: :post do %>
+                    <%= hidden_field_tag :location, params[:location] %>
+                    <%= submit_tag "Add to Cart", class: "btn btn-primary modal-footer-button" %>
+                  <% end %>
                 </div>
               </div>
             </div>
