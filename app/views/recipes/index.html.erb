@@ -25,7 +25,7 @@
                     <% recipe.amounts.each do |amount| %>
                       <% price += amount.ingredient.price %>
                     <% end %>
-                    <p><strong><%= price %> €</strong></p>
+                    <p><strong><%= price.round(2) %> €</strong></p>
                   </div>
                 </div>
               </div>
@@ -68,7 +68,7 @@
                   <div class="modal-body-info d-flex justify-content-between" id="body-info-lower">
                     <div class="modal-body-info-item">25 mins</div>
                     <div class="modal-body-info-item">360 kcal</div>
-                    <div class="modal-body-info-item"><%= price %> €</div>
+                    <div class="modal-body-info-item"><%= price.round(2) %> €</div>
                   </div>
 
 
@@ -79,11 +79,12 @@
                         <div class="ingredient-wrapper">
                           <% recipe.amounts.each do |amount| %>
                             <div class="recipe-item">
+                              <%= cl_image_tag amount.ingredient.photo.key, height: 40, class: "ingredient-img", crop: :fill %>
                               <%# <span style="color: #5A8F28"> %>
-                              <%= amount.quantity %>
+                              <%= amount.quantity.round(2) %>
                               <%=
                                 str = amount.unit
-                                str.gsub("liter", "l").gsub("centi", "c").gsub("milli", "m").gsub("deci", "d")
+                                str.gsub("liter", "l").gsub("centi", "c").gsub("milli", "m").gsub("deci", "d").gsub("tablespoon", "tbsp").gsub("Tbsp", "tbsp").gsub("teaspoon", "tsp")
                                %>
                               <%= amount.ingredient.name %>
                               <%# </span> %>
@@ -96,14 +97,14 @@
 
                   <div class="recipe-instructions">
                     <h5><strong>Recipe Instructions</strong></h5>
-                    <p><%= recipe.description %></p>
+                    <p><%= recipe.description %></p>fmodal-footer-button
                   </div>
 
                 </div>
 
                 <%# Modal Footer %>
                 <div class="modal-footer">
-                  <%= form_tag recipe_orders_path(recipe), method: :post do %>
+                  <%= form_tag recipe_orders_path(recipe), method: :post, class: "modal-footer-button" do %>
                     <%= hidden_field_tag :location, params[:location] %>
                     <%= submit_tag "Add to Cart", class: "btn btn-primary modal-footer-button" %>
                   <% end %>
@@ -111,11 +112,6 @@
               </div>
             </div>
           </div>
-
-
-
-
-
 
 
         <%# -------- %>

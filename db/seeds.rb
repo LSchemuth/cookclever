@@ -109,6 +109,15 @@ require 'uri'
 require 'net/http'
 require 'openssl'
 
+#lib/active_storage/service/cloudinary_service.rb:31
+def handle_string_io_as_file(io, filename)
+  return io unless io.class == StringIO
+  file = Tempfile.new(["temp",".png"], encoding: 'ascii-8bit')
+  file.binmode
+  file.write io.read
+  file.open
+end
+
 puts "Creating user"
 user = User.create(email: "lschemuth@hotmail.de", password: "111111")
 
@@ -123,7 +132,7 @@ end
 
 supermarket_name = [ "Rewe", "Lidl", "Edeka", "Albert Heijn", "Carrefour", "Aldi", "Tesco", "Sainsbury's" ]
 
-5.times do
+6.times do
   p supermarket = Supermarket.new(
     name: supermarket_name.sample,
     address: addresses_array[counter],
@@ -151,7 +160,7 @@ supermarket_name = [ "Rewe", "Lidl", "Edeka", "Albert Heijn", "Carrefour", "Aldi
       response = http.request(request)
       api_answer = JSON.parse response.read_body
       api_recipe = api_answer["recipes"].first
-      binding.pry
+      # binding.pry
     rescue => exception
       p exception
     end
@@ -170,12 +179,18 @@ supermarket_name = [ "Rewe", "Lidl", "Edeka", "Albert Heijn", "Carrefour", "Aldi
 
     # Ingredients creation for this recipe
     api_recipe["extendedIngredients"].each do |api_ingredient|
-        p ingredient = Ingredient.create!(
+        p ingredient = Ingredient.new(
           name:  api_ingredient["name"],
-          price:  rand(1..4),
+          price:  rand(0.1..0.6),
           expiration_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
           supermarket: supermarket
           )
+          p api_ingredient["image"]
+          p url = "https://www.spoonacular.com/cdn/ingredients_100x100/#{api_ingredient["image"]}"
+          io = URI.open(url)
+          file = handle_string_io_as_file(io, api_ingredient["image"])
+          ingredient.photo.attach(io: file, filename: "#{ingredient.name}", content_type: "image/jpg}")
+          ingredient.save!
 
         amount = Amount.create!(
           quantity: api_ingredient["amount"],
@@ -190,3 +205,4 @@ end
 
 
 puts 'Finished!'
+
