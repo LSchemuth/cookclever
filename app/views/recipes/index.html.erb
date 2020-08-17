@@ -9,8 +9,7 @@
         <% n = 0  %>
         <% @recipes.each do |recipe|%>
           <%= link_to recipe_path(recipe), "data-toggle" => "modal", 'data-target' => "#recipe#{n}" do %>
-            <div class="recipe-card">
-
+            <div class="recipe-card" data-supermarket-id="<%= recipe.supermarket.id %>">
               <% if recipe.photo.attached? %>
                 <%= cl_image_tag recipe.photo.key, height: 200, width: 300, crop: :fill %>
               <% else %>
