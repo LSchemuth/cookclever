@@ -32,6 +32,9 @@ gem 'devise'
 gem 'geocoder'
 gem 'cloudinary', '~> 1.12.0'
 gem 'faker'
+# Gem for Spoonacular API
+gem 'openssl', '~> 2.0.0.beta.1'
+gem 'uri', '~> 0.10.0'
 
 gem 'autoprefixer-rails'
 gem 'font-awesome-sass'
