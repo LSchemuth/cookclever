@@ -34,9 +34,9 @@
           <% end %>
 
           <%# Modal %>
-          <div class="modal fade" id="<%= "recipe#{n}" %>" tabindex="-1" role="dialog" aria-labelledby="<%= "recipe#{n}Label" %>" aria-hidden="true">
+          <div class="modal faden" id="<%= "recipe#{n}" %>" tabindex="-1" role="dialog" aria-labelledby="<%= "recipe#{n}Label" %>" aria-hidden="true">
             <% n += 1 %>
-            <div class="modal-dialog modal-md" role="document">
+            <div class="modal-dialog modal-lg" role="document">
               <div class="modal-content">
 
                 <%# Modal Header %>
@@ -44,7 +44,7 @@
                   <div class="modal-header-image">
 
                     <% if recipe.photo.attached? %>
-                      <%= cl_image_tag recipe.photo.key, height: 300, width: 300, crop: :fill %>
+                      <%= cl_image_tag recipe.photo.key, height: 400, crop: :fill %>
                     <% else %>
                       <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597150377/Cookclever/placeholder.png" style="width: 50%">
                     <% end %>
