@@ -43,9 +43,9 @@
 
       <%= form_tag recipes_path, class: "form-inline needs-validation form-homepage", novalidate: true, method: :get do %>
       <label class="sr-only" for="inline-location">Location</label>
-      <div class="location-wrapper" id="inline-content">
+      <div class="location-wrapper w-50" id="inline-content">
         <i class="fas fa-map-marker-alt location-marker"></i>
-        <%= text_field_tag :location, params[:location], class: "form-control mb-5 location-input-home float-left", placeholder: "Please enter a location", id: "pages_supermarket_address", style: "width: 250px" %>
+        <%= text_field_tag :location, params[:location], class: "form-control mb-5 location-input-home float-left", placeholder: "Please enter a location", id: "pages_supermarket_address", style: "width: 450px" %>
 
         <%= image_submit_tag "arrow_right.svg", class: "submit-home" %>
 
@@ -66,38 +66,49 @@
 
 <div class="container homepage-info">
   <h1 class="info-title">How does CookClever work?</h1>
-  <div class="row row-cols-1 row-cols-md-3">
+  <div class="row row-cols-1 row-cols-md-3" id="boxes">
     <div class="col mb-4">
       <div class="card-info h-100">
-        <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597330343/Cookclever/laptop_qyhw3s.png" class="card-img-top" alt="Go online!">
         <div class="card-body">
+          <div class="card-image">
+            <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597330343/Cookclever/laptop_qyhw3s.png" class="card-img-top mb-5 mt-3" alt="Go online!">
+          </div>
+          <div class="card-paragraph">
           <h5 class="card-title">Go to the CookClever site</h5>
-          <p class="card-text">To start using this amazingly sustainable and tasty service, go to www.cookclever.xyz.</p>
+          <p class="card-text">To start using this amazingly sustainable and tasty service, go to www.cookclever.xyz. to find recipes and to start saving food.</p>
+          </div>
         </div>
       </div>
     </div>
   <div class="col mb-4">
     <div class="card-info h-100">
       <div class="card-body">
-        <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597330785/Cookclever/map_nwgthg.png" class="card-img-top" alt="Enter your location!">
-        <h5 class="card-title">Enter your location</h5>
-        <p class="card-text">Start browsing all the great recipes that have been generated just for you. <br>
-        Find supermarkets close by that offer bags full of the ingredients you need.</p>
+        <div class="card-image">
+          <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597330785/Cookclever/map_nwgthg.png" class="card-img-top mb-5 mt-3" alt="Enter your location!">
+        </div>
+        <div class="card-paragraph">
+          <h5 class="card-title">Enter your location</h5>
+          <p class="card-text">See all the great recipes that have been generated for you, pick a supermarket close by, where you get your bag with all the ingredients.</p>
+        </div>
       </div>
     </div>
   </div>
   <div class="col mb-4">
     <div class="card-info h-100">
       <div class="card-body">
-        <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597331074/Cookclever/bag_oboghq.png" class="card-img-top" alt="Pick up your recipe">
-        <h5 class="card-title">Pick up your portion</h5>
-        <p class="card-text">After buying the recipe on our website, go and pick up your bag at your local supermarket and enjoy!.</p>
+        <div class="card-image">
+          <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597331074/Cookclever/bag_oboghq.png" class="card-img-top mb-4 ml-3 mt-3" alt="Pick up your recipe" style="height: 200px; width: 260px">
+        </div>
+        <div class="card-paragraph">
+          <h5 class="card-title">Pick up your portion</h5>
+          <p class="card-text">After buying the recipe on our website, go and pick up your bag at your local supermarket and enjoy preparing and eating a tasty meal!</p>
+        </div>
       </div>
     </div>
   </div>
 </div>
   <br>
-  <h2>... and thats how easy it is! Start saving food now!</h2>
+  <h2 class="mt-4">... and thats how easy it is! Start saving food now!</h2>
   <br>
 
   <div class="row row-cols-1 row-cols-md-2">
