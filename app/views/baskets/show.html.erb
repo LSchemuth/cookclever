@@ -72,10 +72,13 @@
 
           <%= link_to "Go back to continue shopping...", recipes_path, class: "card-link-secondary small text-uppercase mr-3"%>
 
-          <h5 class="mb-3 mt-3">Please enter your pick-up time</h5>
+          <h5 class="mb-3 mt-3">Please choose a pickup slot!</h5>
+
+          <button class="btn btn-outline-secondary btn-sm" disabled>10:00 - 12:00</button>
+          <button class="btn btn-outline-success btn-sm">17:00 - 20:00</button>
 
 
-          <form class="form-inline">
+          <!-- <form class="form-inline">
             <label class="sr-only" for="inline-date">Start-Date</label>
             <input type="date" class="form-control mr-3 mb-3" id="inline-date" required>
             <div class="invalid-feedback">Please provide a valid value.</div>
@@ -87,7 +90,7 @@
             <div class="valid-feedback">Looks good!</div>
 
             <button type="submit" class="btn btn-primary mb-3">Submit</button>
-          </form>
+          </form> -->
 
           <p class="text-primary mb-0"><i class="fas fa-info-circle mr-1"></i> Do not delay the purchase, adding
             items to your cart does not mean booking them.</p>
