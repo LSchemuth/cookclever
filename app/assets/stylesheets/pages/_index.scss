@@ -1,17 +1,17 @@
 // Import page-specific CSS files here.
 @import "home";
 
-.container-main {
-    padding: 0;
-  }
+.container-main{
+  padding: 0;
+}
 
-  .row {
-    width: 100%;
-  }
+.row {
+  width: 100%;
+}
 
-  .column {
-    width: 50%;
-  }
+.column {
+  width: 50%;
+}
 
 
 // Modal
@@ -91,10 +91,11 @@
 
 // Map
 #map {
-  height: 100vh;
+  height: 100%;
   position: sticky;
-  top: 0px;
-  margin-top: 67px;
-  margin-left: 30px;
+  top: 106px;
+  // margin-top: 67px;
+  // margin-left: 30px;
   width: 100%;
+  margin-left: 16px;
 }
