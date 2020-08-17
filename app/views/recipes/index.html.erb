@@ -97,7 +97,11 @@
 
                   <div class="recipe-instructions">
                     <h5><strong>Recipe Instructions</strong></h5>
-                    <p><%= recipe.description %></p>fmodal-footer-button
+                    <p><%= 
+                      recdes = recipe.description 
+                      recdes.gsub(/<\/?[^>]*>/, "")
+                    %></p>fmodal-footer-button
+                    
                   </div>
 
                 </div>
