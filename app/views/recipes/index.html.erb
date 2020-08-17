@@ -2,15 +2,13 @@
   <div class="row">
     <div class="column">
       <div>
-        <h4 class="mt-3 mb-0">There are <strong style="color: #5A8F28;"><%= @recipes.count %></strong> recipes available around you in <strong style="color: #5A8F28;"
-><%= params[:location] %></strong> !</h4>
+        <h4 class="mt-3 mb-0">There are <strong style="color: #5A8F28;"><%= @recipes.count %></strong> recipes available around you in <strong style="color: #5A8F28;"><%= params[:location]%></strong>!</h4>
       </div>
       <div class="cards">
         <% n = 0  %>
         <% @recipes.each do |recipe|%>
           <%= link_to recipe_path(recipe), "data-toggle" => "modal", 'data-target' => "#recipe#{n}" do %>
-            <div class="recipe-card">
-
+            <div class="recipe-card" data-supermarket-id="<%= recipe.supermarket.id %>">
               <% if recipe.photo.attached? %>
                 <%= cl_image_tag recipe.photo.key, height: 200, width: 300, crop: :fill %>
               <% else %>

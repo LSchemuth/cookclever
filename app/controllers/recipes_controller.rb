@@ -22,12 +22,13 @@ class RecipesController < ApplicationController
       lat: supermarket.latitude,
       lng: supermarket.longitude,
       infoWindow: render_to_string(partial: "info_window", locals: { supermarket: supermarket, supermarket_recipes: supermarket_recipes}),
-      image_url: helpers.asset_url('marker.png')
+      image_url: helpers.asset_url('marker.png'),
+      id: supermarket.id
     }
     end
   end
 
-  
+
   def show
   end
 
