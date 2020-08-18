@@ -65,9 +65,9 @@
                     <% end %>
                     <div class="modal-body-info-item"><strong>Price:</strong></div>
                   </div>
-                  <div class="modal-body-info d-flex justify-content-between" id="body-info-lower">
-                    <div class="modal-body-info-item">25 mins</div>
-                    <div class="modal-body-info-item">360 kcal</div>
+                  <div class="modal-body-info d-flex" id="body-info-lower">
+                    <div class="modal-body-info-item"><%= rand(15..45) %> mins</div>
+                    <div class="modal-body-info-item"><%= rand(110..350) %> kcal</div>
                     <div class="modal-body-info-item"><%= price.round(2) %> €</div>
                   </div>
 
