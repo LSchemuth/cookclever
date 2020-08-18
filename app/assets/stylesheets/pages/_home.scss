@@ -87,48 +87,47 @@ html {
   margin: 13vh 0 100px;
 }
 
+.form-control {
+  color: #656565;
+}
 
-  .form-control {
-    color: #656565;
-  }
+.notice {
+  display: none;
+}
 
-  .notice {
+// Location-Form
+.location-wrapper {
+  margin: 0 auto 20px;
+  width: 350px;
+  height: 50px;
+  border-radius: 25px;
+  display: flex;
+  background-color: white;
+  align-items: center;
+  .ap-input-icon {
     display: none;
   }
+}
 
-  // Location-Form
-  .location-wrapper {
-    margin: 0 auto 20px;
-    width: 350px;
-    height: 50px;
-    border-radius: 25px;
-    display: flex;
-    background-color: white;
-    align-items: center;
-    .ap-input-icon {
-      display: none;
-    }
-  }
+.location-marker {
+  padding: 0 8px;
+}
 
-  .location-marker {
-    padding: 0 8px;
-  }
+.location-input-home {
+  border: none;
+  height: 50px;
+  flex-grow: 4;
+  margin-top: 48px;
+}
 
-  .location-input-home {
-    border: none;
-    height: 50px;
-    flex-grow: 4;
-    margin-top: 48px;
-  }
+.submit-home {
+  height: 45px;
+  padding: 0 4px;
+}
 
-  .submit-home {
-    height: 45px;
-    padding: 0 4px;
-  }
-
-  .ap-dataset-places {
-    text-align: left;
-  }
+.ap-dataset-places {
+  text-align: left;
+}
 
 //  Navbar Home
 

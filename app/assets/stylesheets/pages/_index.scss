@@ -33,7 +33,7 @@
     position: relative;
     h3 {
       position: absolute;
-      left: 8px;
+      left: 20px;
       bottom: 0px;
       color: white;
     }
@@ -99,6 +99,7 @@
   .recipe-instructions {
     padding-top: 32px;
     padding-left: 24px;
+    padding-right: 16px;
   }
 
   .modal-footer-button {
