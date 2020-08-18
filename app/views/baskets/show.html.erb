@@ -45,44 +45,58 @@
                         </small> %>
                       </div>
                     </div>
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between">
                       <div>
-                        <div class="container-ingredients">
-                          <h5><strong>Ingredients</strong></h5>
-                          <div class="row row-ingredients">
-                            <div class="column-ingredients">
-                              <div class="ingredient-wrapper">
-                                <% order.recipe.amounts.each do |amount| %>
-                                    <div class="recipe-item">
-                                      <%= cl_image_tag amount.ingredient.photo.key, height: 40, class: "ingredient-img", crop: :fill %>
-                                      <%# <span style="color: #5A8F28"> %>
-                                      <%= amount.quantity.round(2) %>
-                                      <%=
-                                        str = amount.unit
-                                        str.gsub("liter", "l").gsub("centi", "c").gsub("milli", "m").gsub("deci", "d").gsub("tablespoon", "tbsp").gsub("Tbsp", "tbsp").gsub("teaspoon", "tsp")
-                                       %>
-                                      <%= amount.ingredient.name %>
-                                      <% ingredient_amount = order.ordered_amounts.find_by(ingredient: amount.ingredient) %>
-                                      <%= link_to "-", decrement_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary" %>
-                                      <%= ingredient_amount.quantity %>
-                                      <%= link_to "+", increment_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary" %>
-                                      <%# </span> %>
-                                    </div>
-                                <% end %>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-
                         <i class="fas fa-trash-alt mr-1"></i><%= link_to "Remove item", order_path(order), method: :delete, class: "card-link-secondary small text-uppercase mr-3"%>
                       </div>
-                        <% order_price = 0 %>
-                        <% order.ordered_amounts.each do |amount| %>
-                            <% order_price += (amount.ingredient.price * amount.quantity)%>
-                        <% end %>
-                        <p class="mb-0"><span><strong id="summary"><%= order_price.round(2) %> €</strong></span></p class="mb-0">
+                      <% order_price = 0 %>
+                      <% order.ordered_amounts.each do |amount| %>
+                          <% order_price += (amount.ingredient.price * amount.quantity)%>
+                      <% end %>
+                      <p class="mb-0"><span><strong id="summary"><%= sprintf "%.2f", order_price %> €</strong></span></p class="mb-0">
                     </div>
+
+                    <%# Ingredients Foldable %>
+                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      Edit ingredients
+                    </a>
+
+                    <div class="collapse" id="collapseExample">
+                      <div class="card card-body">
+                        <% order.recipe.amounts.each do |amount| %>
+                            <div class="recipe-item">
+                              <div class="d-flex justify-content-between">
+                                <div>
+                                  <%= cl_image_tag amount.ingredient.photo.key, height: 40, class: "ingredient-img", crop: :fill %>
+                                  <%# <span style="color: #5A8F28"> %>
+                                  <%= amount.quantity.round(2) %>
+                                  <%=
+                                    str = amount.unit
+                                    str.gsub("liter", "l").gsub("centi", "c").gsub("milli", "m").gsub("deci", "d").gsub("tablespoon", "tbsp").gsub("Tbsp", "tbsp").gsub("teaspoon", "tsp")
+                                   %>
+                                  <%= amount.ingredient.name %>
+                                </div>
+                                <div class="d-flex justify-content-between" style="width: 100px">
+                                  <% ingredient_amount = order.ordered_amounts.find_by(ingredient: amount.ingredient) %>
+                                  <span>
+                                    <%= link_to "-", decrement_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary" %>
+                                  </span>
+                                  <span style="width: 30px; text-align: center">
+                                    <%= ingredient_amount.quantity %>
+                                  </span>
+                                  <span>
+                                    <%= link_to "+", increment_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary" %>
+                                  </span>
+                                  <%# </span> %>
+                                </div>
+                              </div>
+                            </div>
+                        <% end %>
+                      </div>
+                    </div>
+                    <%# Ingredients Foldable End %>
+
+
                   </div>
                 </div>
               </div>
@@ -215,7 +229,7 @@
             <ul class="list-group list-group-flush">
               <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                 Temporary amount
-                <span> <%= total.round(2) %> €</span>
+                <span> <%= sprintf "%.2f", total %> €</span>
               </li>
               <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                 Delivery Costs
@@ -236,7 +250,7 @@
                       <% total += (amount.ingredient.price * amount.quantity) %>
                     <% end %>
                   <% end %>
-                  <p>Total: <%= total.round(2) %> €</p>
+                  <p>Total: <%= sprintf "%.2f", total %> €</p>
                 </div>
                 </strong></span>
               </li>
