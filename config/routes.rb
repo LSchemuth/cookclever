@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
-  get '/supermarkets/:id/dashboard', to: 'supermarkets#dashboard'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   resources :recipes, except: [ :new, :create ] do
     resources :orders, only: [ :new, :create ]
@@ -16,6 +15,13 @@ Rails.application.routes.draw do
   resources :supermarkets do
     resources :recipes, only: [ :new, :create ]
     resources :ingredients
+  end
+
+  resources :ordered_amounts do
+    member do
+      patch :increment
+      patch :decrement
+    end
   end
 
 end
