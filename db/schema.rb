@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_094639) do
+ActiveRecord::Schema.define(version: 2020_08_18_140203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,6 +53,13 @@ ActiveRecord::Schema.define(version: 2020_08_18_094639) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_baskets_on_user_id"
+  end
+
+  create_table "confirmation_pages", force: :cascade do |t|
+    t.bigint "basket_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["basket_id"], name: "index_confirmation_pages_on_basket_id"
   end
 
   create_table "ingredients", force: :cascade do |t|
@@ -120,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_094639) do
   add_foreign_key "amounts", "ingredients"
   add_foreign_key "amounts", "recipes"
   add_foreign_key "baskets", "users"
+  add_foreign_key "confirmation_pages", "baskets"
   add_foreign_key "ingredients", "supermarkets"
   add_foreign_key "ordered_amounts", "ingredients"
   add_foreign_key "ordered_amounts", "orders"

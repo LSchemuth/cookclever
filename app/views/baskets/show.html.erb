@@ -57,11 +57,11 @@
                     </div>
 
                     <%# Ingredients Foldable %>
-                    <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                    <a class="btn btn-primary" data-toggle="collapse" href="#order-<%= order.id %>" role="button" aria-expanded="false" aria-controls="order-<%= order.id %>">
                       Edit ingredients
                     </a>
 
-                    <div class="collapse" id="collapseExample">
+                    <div class="collapse" id="order-<%= order.id %>">
                       <div class="card card-body">
                         <% order.recipe.amounts.each do |amount| %>
                             <div class="recipe-item">
