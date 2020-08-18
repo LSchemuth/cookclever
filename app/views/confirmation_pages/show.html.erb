@@ -1,0 +1,18 @@
+<div class="container mt-4">
+  <h1>Thank you for your Order!</h1>
+
+  <% saved_ingredients = 0 %>
+  <% @orders.each do |order| %>
+    <% saved_ingredients += order.ordered_amounts.count %>
+  <% end %>
+  <h2>You've done such a good deed: you have saved <%= saved_ingredients %> ingredients from being thrown away!</h2>
+  <br>
+  <h3>You can pick up your bags at the following supermarkets:</h3>
+  <% @orders.each do |order| %>
+    <li><%= order.recipe.title%>: <%= order.recipe.supermarket.address%></li>
+  <% end %>
+  <br>
+  <p>Please check you Mailbox! We have sent you a confirmation mail with a pick-up code to <em><%= @user.email %></em>!</p>
+</div>
+
+<li></li>
