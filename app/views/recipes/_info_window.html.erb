@@ -1,3 +1,8 @@
-<h3><%= supermarket.name %></h3>
+<h3><strong style="color: #5A8F28;"><%= supermarket.name %></strong></h3>
 <p><%= supermarket.address %></p>
-<p><%= supermarket_recipes %></p>
+<p><%#= supermarket_recipes %></p>
+<ul>
+  <% supermarket.recipes.each do |recipe| %>
+    <li><%= link_to recipe.title, recipe_path(recipe), "data-toggle" => "modal", 'data-target' => "#recipe-#{recipe.id}" %>,</li>
+  <% end %>
+</ul>
