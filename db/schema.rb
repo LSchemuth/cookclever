@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_17_141056) do
+ActiveRecord::Schema.define(version: 2020_08_18_094639) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,6 +65,16 @@ ActiveRecord::Schema.define(version: 2020_08_17_141056) do
     t.index ["supermarket_id"], name: "index_ingredients_on_supermarket_id"
   end
 
+  create_table "ordered_amounts", force: :cascade do |t|
+    t.bigint "ingredient_id", null: false
+    t.bigint "order_id", null: false
+    t.float "quantity", default: 0.0
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["ingredient_id"], name: "index_ordered_amounts_on_ingredient_id"
+    t.index ["order_id"], name: "index_ordered_amounts_on_order_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.bigint "basket_id", null: false
     t.bigint "recipe_id", null: false
@@ -111,6 +121,8 @@ ActiveRecord::Schema.define(version: 2020_08_17_141056) do
   add_foreign_key "amounts", "recipes"
   add_foreign_key "baskets", "users"
   add_foreign_key "ingredients", "supermarkets"
+  add_foreign_key "ordered_amounts", "ingredients"
+  add_foreign_key "ordered_amounts", "orders"
   add_foreign_key "orders", "baskets"
   add_foreign_key "orders", "recipes"
   add_foreign_key "recipes", "supermarkets"

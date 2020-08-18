@@ -9,13 +9,12 @@
         <div class="pt-4 wish-list">
 
           <h5 class="mb-4">Cart (<span><%= @orders.count %></span> items)</h5>
+          <% n = 0  %>
           <% @orders.each do |order|%>
             <div class="order-card">
               <div class="row mb-4">
                 <div class="col-md-3 col-lg-3 col-xl-3">
                   <div class="view zoom overlay z-depth-1 rounded mb-3 mb-md-0">
-<!--                     <img class="img-fluid w-100"
-                      src="https://images.pexels.com/photos/4079520/pexels-photo-4079520.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" alt="Sample"> -->
                     <%= cl_image_tag order.recipe.photo.key, height: 100, width: 150, crop: :fill %>
                   </div>
                 </div>
@@ -24,11 +23,7 @@
                     <div class="d-flex justify-content-between">
                       <div>
                         <h5><%= order.recipe.title %></h5>
-                        <% saved_ingredients = [] %>
-                        <% order.recipe.amounts.each do |amount| %>
-                          <% saved_ingredients << amount.ingredient %>
-                        <% end %>
-                        <p class="mb-3 text-uppercase small">You saved <%= saved_ingredients.size %> ingredients from being thrown away</p>
+                        <p class="mb-3 text-uppercase small">You saved <%= order.ordered_amounts.count %> ingredients from being thrown away</p>
                         <%# <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
                         <p class="mb-3 text-muted text-uppercase small">Size: M</p> %>
                       </div>
@@ -51,17 +46,41 @@
                     </div>
                     <div class="d-flex justify-content-between align-items-center">
                       <div>
-<!--                         <a href="#!" type="button" class="card-link-secondary small text-uppercase mr-3"><i
-                            class="fas fa-trash-alt mr-1"></i> Remove item </a> -->
+                        <div class="container-ingredients">
+                          <h5><strong>Ingredients</strong></h5>
+                          <div class="row row-ingredients">
+                            <div class="column-ingredients">
+                              <div class="ingredient-wrapper">
+                                <% order.recipe.amounts.each do |amount| %>
+                                    <div class="recipe-item">
+                                      <%= cl_image_tag amount.ingredient.photo.key, height: 40, class: "ingredient-img", crop: :fill %>
+                                      <%# <span style="color: #5A8F28"> %>
+                                      <%= amount.quantity.round(2) %>
+                                      <%=
+                                        str = amount.unit
+                                        str.gsub("liter", "l").gsub("centi", "c").gsub("milli", "m").gsub("deci", "d").gsub("tablespoon", "tbsp").gsub("Tbsp", "tbsp").gsub("teaspoon", "tsp")
+                                       %>
+                                      <%= amount.ingredient.name %>
+                                      <% ingredient_amount = order.ordered_amounts.find_by(ingredient: amount.ingredient) %>
+                                      <%= link_to "-", decrement_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary" %>
+                                      <%= ingredient_amount.quantity %>
+                                      <%= link_to "+", increment_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary" %>
+                                      <%# </span> %>
+                                    </div>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
                         <i class="fas fa-trash-alt mr-1"></i><%= link_to "Remove item", order_path(order), method: :delete, class: "card-link-secondary small text-uppercase mr-3"%>
                       </div>
-                      <% unless order.recipe.amounts.empty? %>
                         <% order_price = 0 %>
-                        <% order.recipe.amounts.each do |amount| %>
-                            <% order_price += amount.ingredient.price %>
+                        <% order.ordered_amounts.each do |amount| %>
+                            <% order_price += (amount.ingredient.price * amount.quantity)%>
                         <% end %>
                         <p class="mb-0"><span><strong id="summary"><%= order_price.round(2) %> €</strong></span></p class="mb-0">
-                      <% end %>
                     </div>
                   </div>
                 </div>
@@ -186,8 +205,8 @@
           <div class="pt-4">
             <% total = 0 %>
             <% @orders.each do |order| %>
-              <% order.recipe.amounts.each do |amount| %>
-                <% total += amount.ingredient.price %>
+              <% order.ordered_amounts.each do |amount| %>
+                <% total += (amount.ingredient.price * amount.quantity)%>
               <% end %>
             <% end %>
             <h5 class="mb-3">Total Amount</h5>
@@ -212,8 +231,8 @@
                 <div class="total-price">
                   <% total = 0 %>
                   <% @orders.each do |order| %>
-                    <% order.recipe.amounts.each do |amount| %>
-                      <% total += amount.ingredient.price %>
+                    <% order.ordered_amounts.each do |amount| %>
+                      <% total += (amount.ingredient.price * amount.quantity) %>
                     <% end %>
                   <% end %>
                   <p>Total: <%= total.round(2) %> €</p>
