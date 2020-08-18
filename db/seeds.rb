@@ -148,15 +148,15 @@ supermarket_name = [ "Rewe", "Lidl", "Edeka", "Albert Heijn", "Carrefour", "Aldi
     # API CALL
     begin
       url = URI("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/random")
-      
+
       http = Net::HTTP.new(url.host, url.port)
       http.use_ssl = true
       http.verify_mode = OpenSSL::SSL::VERIFY_NONE
-      
+
       request = Net::HTTP::Get.new(url)
       request["x-rapidapi-host"] = 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
       request["x-rapidapi-key"] = '79df08cf1amsh2662634d1ced4d2p1f8ed2jsn710d56080115'
-      
+
       response = http.request(request)
       api_answer = JSON.parse response.read_body
       api_recipe = api_answer["recipes"].first
@@ -175,13 +175,13 @@ supermarket_name = [ "Rewe", "Lidl", "Edeka", "Albert Heijn", "Carrefour", "Aldi
     type = api_recipe['imageType']
     recipe.photo.attach(io: file, filename: "#{recipe.title}.#{type}", content_type: "image/#{type}")
     recipe.save!
-   
+
 
     # Ingredients creation for this recipe
     api_recipe["extendedIngredients"].each do |api_ingredient|
         p ingredient = Ingredient.new(
           name:  api_ingredient["name"],
-          price:  rand(0.1..0.6),
+          price:  rand(0.1..0.4),
           expiration_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
           supermarket: supermarket
           )
