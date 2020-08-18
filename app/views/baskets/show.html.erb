@@ -60,7 +60,7 @@
                     <a class="btn btn-primary" data-toggle="collapse" href="#order-<%= order.id %>" role="button" aria-expanded="false" aria-controls="order-<%= order.id %>">
                       Edit ingredients
                     </a>
-
+        
                     <div class="collapse" id="order-<%= order.id %>">
                       <div class="card card-body">
                         <% order.recipe.amounts.each do |amount| %>
@@ -79,13 +79,13 @@
                                 <div class="d-flex justify-content-between" style="width: 100px">
                                   <% ingredient_amount = order.ordered_amounts.find_by(ingredient: amount.ingredient) %>
                                   <span>
-                                    <%= link_to "-", decrement_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary" %>
+                                    <%= link_to "-", decrement_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary", style: "background-color: #B9BEA5" %>
                                   </span>
                                   <span style="width: 30px; text-align: center">
                                     <%= ingredient_amount.quantity %>
                                   </span>
                                   <span>
-                                    <%= link_to "+", increment_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary" %>
+                                    <%= link_to "+", increment_ordered_amount_path(ingredient_amount), method: :patch, class: "btn btn-primary", style: "background-color: #B9BEA5" %>
                                   </span>
                                   <%# </span> %>
                                 </div>
