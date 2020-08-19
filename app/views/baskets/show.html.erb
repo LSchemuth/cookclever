@@ -27,7 +27,7 @@
                         <%# <p class="mb-2 text-muted text-uppercase small">Color: blue</p>
                         <p class="mb-3 text-muted text-uppercase small">Size: M</p> %>
                       </div>
-                      <div>
+                      <div class="plus-minus-wrapper">
                         <%= link_to '<i class="fas fa-minus ml-1 mr-1"></i>'.html_safe, decrement_order_path(order), method: :patch, class: "minus" %>
                         <%= order.quantity %>
                         <%= link_to '<i class="fas fa-plus ml-1 mr-1"></i>'.html_safe, increment_order_path(order), method: :patch, class: "plus" %>
