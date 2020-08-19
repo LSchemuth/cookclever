@@ -1,0 +1,24 @@
+.container-new-page {
+  margin: 20px 100px 50px;
+}
+
+.img-new {
+  height: 400px;
+  background-size: cover;
+  background-position: center;
+  width: 110%;
+  clip-path: polygon(16px 0,100% 0,100% 100%,100px 100%);
+}
+
+.form-wrapper {
+  margin-top: 20px;
+  h2 {
+    font-size: 24px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  p {
+    line-height: 1.5;
+  }
+}
