@@ -20,7 +20,11 @@
             </p>
           <% end %>
           <p class="number-of-items">
-            <%= @basket.orders.count %>
+            <% if current_page?(:controller => 'confirmation_pages', :action => 'show') %>
+              <%= 0 %>
+            <% else %>
+              <%= @basket.orders.count %>
+            <% end %>
           </p>
         </div>
         <li class="nav-item dropdown" style="cursor: pointer">
