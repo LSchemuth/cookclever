@@ -76,6 +76,7 @@ html {
 .banner-wrapper {
   text-align: center;
   height: 500px;
+  padding-top: 100px;
 }
 
 .form-homepage {
@@ -84,7 +85,18 @@ html {
 
 .logoHome {
   width: 200px;
-  margin: 13vh 0 100px;
+  // margin: 13vh 0 100px;
+}
+
+.logo-background-wrapper {
+height: 164px;
+width: 164px;
+border-radius: 50%;
+margin: 0 auto 100px;
+background-color: white;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
 .form-control {
