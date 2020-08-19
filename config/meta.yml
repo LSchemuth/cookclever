@@ -1,0 +1,5 @@
+meta_product_name: "Cookclever"
+meta_title: "Cookclever - the clever, sustainable and easy way of cooking"
+meta_description: "Relevant description"
+meta_image: "cooking.png" # should exist in `app/assets/images/`
+twitter_account: "@Cookclever"
