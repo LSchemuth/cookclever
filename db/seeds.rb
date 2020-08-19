@@ -179,25 +179,36 @@ supermarket_name = [ "Rewe", "Lidl", "Edeka", "Albert Heijn", "Carrefour", "Aldi
 
     # Ingredients creation for this recipe
     api_recipe["extendedIngredients"].each do |api_ingredient|
-        p ingredient = Ingredient.new(
-          name:  api_ingredient["name"],
-          price:  rand(0.1..0.4),
-          expiration_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
-          supermarket: supermarket
-          )
-          p api_ingredient["image"]
-          p url = "https://www.spoonacular.com/cdn/ingredients_100x100/#{api_ingredient["image"]}"
-          io = URI.open(url)
-          file = handle_string_io_as_file(io, api_ingredient["image"])
-          ingredient.photo.attach(io: file, filename: "#{ingredient.name}", content_type: "image/jpg}")
-          ingredient.save!
-
-        amount = Amount.create!(
-          quantity: api_ingredient["amount"],
-          unit: api_ingredient["unit"],
-          recipe: recipe,
-          ingredient: ingredient
+      p ingredient = Ingredient.new(
+        name:  api_ingredient["name"],
+        expiration_date: Faker::Date.between(from: 2.days.ago, to: Date.today),
+        supermarket: supermarket
         )
+        p api_ingredient["image"]
+        p url = "https://www.spoonacular.com/cdn/ingredients_100x100/#{api_ingredient["image"]}"
+        io = URI.open(url)
+        file = handle_string_io_as_file(io, api_ingredient["image"])
+        ingredient.photo.attach(io: file, filename: "#{ingredient.name}", content_type: "image/jpg}")
+
+
+      amount = Amount.create!(
+        quantity: api_ingredient["amount"],
+        unit: api_ingredient["unit"],
+        recipe: recipe,
+        ingredient: ingredient
+      )
+
+      if amount.quantity < 5
+        ingredient.price = rand(0.1..0.4)
+      elsif amount.quantity < 25
+        ingredient.price = rand(0.05..0.1)
+      elsif amount.quantity < 100
+        ingredient.price = rand(0.01..0.05)
+      else
+        ingredient.price = rand(0.005..0.02)
+      end
+
+      ingredient.save!
     end
   end
   puts "finished a supermarket"
