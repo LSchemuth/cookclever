@@ -28,7 +28,10 @@
                         <p class="mb-3 text-muted text-uppercase small">Size: M</p> %>
                       </div>
                       <div>
-                        <div class="def-number-input number-input safari_only mb-0" style="width: 100px">
+                        <%= link_to '<i class="fas fa-minus ml-1 mr-1"></i>'.html_safe, decrement_order_path(order), method: :patch, class: "minus" %>
+                        <%= order.quantity %>
+                        <%= link_to '<i class="fas fa-plus ml-1 mr-1"></i>'.html_safe, increment_order_path(order), method: :patch, class: "plus" %>
+                        <!-- <div class="def-number-input number-input safari_only mb-0" style="width: 100px">
                           <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                             class="minus decrease">
                               <i class="fas fa-minus"></i>
@@ -39,7 +42,7 @@
                             class="plus increase">
                               <i class="fas fa-plus"></i>
                             </button>
-                        </div>
+                        </div> -->
                         <%# <small id="passwordHelpBlock" class="form-text text-muted text-center">
                           (Note, 1 piece)
                         </small> %>
@@ -79,13 +82,13 @@
                                 <div class="d-flex justify-content-between" style="width: 100px">
                                   <% ingredient_amount = order.ordered_amounts.find_by(ingredient: amount.ingredient) %>
                                   <span>
-                                    <%= link_to '<i class="fas fa-minus ml-1 mr-1"></i>'.html_safe, decrement_ordered_amount_path(ingredient_amount), method: :patch, class: "minus button"%>
+                                    <%= link_to '<i class="fas fa-minus ml-1 mr-1"></i>'.html_safe, decrement_ordered_amount_path(ingredient_amount), method: :patch, class: "minus"%>
                                   </span>
                                   <span style="width: 30px; text-align: center">
                                     <%= ingredient_amount.quantity %>
                                   </span>
                                   <span>
-                                    <%= link_to '<i class="fas fa-plus ml-1 mr-1"></i>'.html_safe, increment_ordered_amount_path(ingredient_amount), method: :patch, class: "plus button"%>
+                                    <%= link_to '<i class="fas fa-plus ml-1 mr-1"></i>'.html_safe, increment_ordered_amount_path(ingredient_amount), method: :patch, class: "plus"%>
                                   </span>
                                   <%# </span> %>
                                 </div>
