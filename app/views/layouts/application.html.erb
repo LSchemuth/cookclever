@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Cookclever</title>
+    <title>Cookclever - the clever, sustainable and easy way of cooking</title>
     <link rel="icon" href="https://res-console.cloudinary.com/djkbgxkq1/thumbnails/v1/image/upload/v1597235493/Q29va0NsZXZlci9Mb2dvX3dsb2xiNQ==/preview">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -12,6 +12,27 @@
     <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.js'></script>
     <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.1/mapbox-gl.css' rel='stylesheet' />
     <%# ----------- %>
+
+    <%= favicon_link_tag %>
+
+    <title><%= meta_title %></title>
+    <meta name="description" content="<%= meta_description %>">
+
+    <!-- Facebook Open Graph data -->
+    <meta property="og:title" content="<%= meta_title %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="<%= request.original_url %>" />
+    <meta property="og:image" content="<%= meta_image %>" />
+    <meta property="og:description" content="<%= meta_description %>" />
+    <meta property="og:site_name" content="<%= meta_title %>" />
+
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="<%= DEFAULT_META["twitter_account"] %>">
+    <meta name="twitter:title" content="<%= meta_title %>">
+    <meta name="twitter:description" content="<%= meta_description %>">
+    <meta name="twitter:creator" content="<%= DEFAULT_META["twitter_account"] %>">
+    <meta name="twitter:image:src" content="<%= meta_image %>">
 
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload', defer: true %>
   </head>
@@ -24,7 +45,7 @@
     <%= render 'shared/flashes' %>
 
     <%= yield %>
-    
+
     <%= render 'shared/footer' %>
   </body>
 </html>
