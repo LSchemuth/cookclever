@@ -42,6 +42,16 @@
   padding: 5px 4px;
 }
 
+@media screen and (max-width: 1199px) and (min-width: 992px) {
+  .plus-minus-wrapper {
+    width: 100px;
+  }
+  .ingredients-basket-wrapper {
+    padding-left: 32px;
+  }
+
+}
+
 .quantity {
     width: 30px;
     text-align: center;
