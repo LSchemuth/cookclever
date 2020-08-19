@@ -11,13 +11,13 @@
 }
 
 .minus {
-    border: 1px solid;
+    border: black 1px solid;
     border-radius: 2px;
     background-color: white;
 }
 
 .minus:hover {
-    border: 1px solid;
+    border: black 1px solid;
     background-color: #90B46A;
     i {
       color: white;
@@ -25,13 +25,13 @@
 }
 
 .plus {
-    border: 1px solid;
+    border: black 1px solid;
     border-radius: 2px;
     background-color: white;
 }
 
 .plus:hover {
-    border: 1px solid;
+    border: black 1px solid;
     background-color: #90B46A;
     i {
       color: white;
@@ -86,7 +86,7 @@ input[type=number] {
 
 input[type="radio"] {
     margin-right: 5px
-    
+
 }
 
 .bold {
