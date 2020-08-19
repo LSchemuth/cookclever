@@ -119,7 +119,7 @@ def handle_string_io_as_file(io, filename)
 end
 
 puts "Creating user"
-user = User.create(email: "lschemuth@hotmail.de", password: "111111")
+user = User.create(email: "lotta-schwarz@gmx.net", password: "111111")
 
 puts 'Creating 15 fake supermarkets...'
 counter = 0
