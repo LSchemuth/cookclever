@@ -7,7 +7,12 @@ Rails.application.routes.draw do
     resources :amounts, only: [ :new, :create ]
   end
 
-  resources :orders, only: [ :destroy ]
+  resources :orders, only: [ :destroy ] do
+    member do
+      patch :increment
+      patch :decrement
+    end
+  end
   resources :amounts, only: :destroy
 
   resources :baskets, only: [ :show ]

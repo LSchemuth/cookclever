@@ -32,6 +32,28 @@ class OrdersController < ApplicationController
     redirect_to basket_path(@basket), notice: 'This item was successfully removed from your basket.'
   end
 
+  def decrement
+    @order = Order.find(params[:id])
+    @order.quantity -= 1 unless @order.quantity == 1
+    @order.save
+    @order.ordered_amounts.each do |amount|
+      amount.quantity = amount.ingredient.amounts.find_by(recipe: @order.recipe).quantity * @order.quantity
+      amount.save!
+    end
+      redirect_to @order.basket
+  end
+
+  def increment
+    @order = Order.find(params[:id])
+    @order.quantity += 1
+    @order.save
+    @order.ordered_amounts.each do |amount|
+      amount.quantity = amount.ingredient.amounts.find_by(recipe: @order.recipe).quantity * @order.quantity
+      amount.save!
+    end
+      redirect_to @order.basket
+  end
+
   private
 
   def define_quantity(quantity)
