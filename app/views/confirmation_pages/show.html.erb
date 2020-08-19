@@ -6,7 +6,7 @@
       <% @orders.each do |order| %>
         <% saved_ingredients += order.ordered_amounts.count %>
       <% end %>
-      <h2>You have saved <%= saved_ingredients %> ingredients from being thrown away!</h2>
+      <h2>You have saved <strong><%= saved_ingredients %></strong> ingredients from being thrown away!</h2>
       <br>
       <h3>You can pick up your bags at the following supermarkets:</h3>
       <% @orders.each do |order| %>
