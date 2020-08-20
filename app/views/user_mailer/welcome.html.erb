@@ -10,6 +10,7 @@
   <% @user.baskets.first.orders.each do |order| %>
     <li><%= order.recipe.supermarket.name %> @ <%= order.recipe.supermarket.address %> </li>
   <% end %>
+  <br>
   <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597840315/QRCodeWikipedia_spsahv.png" alt="2453-7853-2680-2384">
   <br>
   <% saved_ingredients = 0 %>
