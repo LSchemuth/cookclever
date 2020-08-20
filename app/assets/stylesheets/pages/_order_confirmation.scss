@@ -8,10 +8,12 @@
   background-position: center;
   width: 110%;
   clip-path: polygon(16px 0,100% 0,100% 100%,100px 100%);
+  position: sticky;
+  top: 106px;
 }
 
 .form-wrapper {
-  margin-top: 20px;
+  // margin-top: 20px;
   h2 {
     font-size: 24px;
   }
@@ -21,4 +23,25 @@
   p {
     line-height: 1.5;
   }
+}
+
+#shiva {
+  // width: 100px;
+  // height: 100px;
+  // background: $green;
+  // border: $bold-green 1px solid;
+  -moz-border-radius: 25px;
+  -webkit-border-radius: 25px;
+  // border-radius: 50px;
+  float:left;
+}
+
+.count {
+  line-height: 100px;
+  color: $bold-green;
+  // margin-left: 39px;
+  font-size: 60px;
+  font-weight: bolder;
+  text-align: center;
+  justify-content: center;
 }
