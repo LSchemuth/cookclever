@@ -4,7 +4,7 @@ class OrderedAmountsController < ApplicationController
     @ordered_amount = OrderedAmount.find(params[:id])
     @ordered_amount.quantity += 1
     if @ordered_amount.save!
-      redirect_to @ordered_amount.order.basket
+      redirect_back fallback_location: @ordered_amount.order.basket
     end
   end
 
@@ -12,7 +12,7 @@ class OrderedAmountsController < ApplicationController
     @ordered_amount = OrderedAmount.find(params[:id])
     @ordered_amount.quantity -= 1
     if @ordered_amount.save!
-      redirect_to @ordered_amount.order.basket
+      redirect_back fallback_location: @ordered_amount.order.basket
     end
   end
 end
