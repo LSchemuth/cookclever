@@ -40,7 +40,7 @@ class OrdersController < ApplicationController
       amount.quantity = amount.ingredient.amounts.find_by(recipe: @order.recipe).quantity * @order.quantity
       amount.save!
     end
-      redirect_to @order.basket
+      redirect_back fallback_location: @order.basket
   end
 
   def increment
@@ -51,7 +51,7 @@ class OrdersController < ApplicationController
       amount.quantity = amount.ingredient.amounts.find_by(recipe: @order.recipe).quantity * @order.quantity
       amount.save!
     end
-      redirect_to @order.basket
+      redirect_back fallback_location: @order.basket
   end
 
   private
