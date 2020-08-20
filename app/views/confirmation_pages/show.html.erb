@@ -1,14 +1,21 @@
 <div class="container container-new-page mt-4">
   <div class="row">
-    <div class="col-6 form-wrapper mt-5">
-      <h1>Thanks! You're Awesome</h1>
+    <div class="col-6 form-wrapper">
       <% saved_ingredients = 0 %>
       <% @orders.each do |order| %>
         <% saved_ingredients += order.ordered_amounts.count %>
       <% end %>
-      <h2>You have saved <strong><%= saved_ingredients %></strong> ingredients from being thrown away!</h2>
+      <div id="shiva"><span class="count"> <%= saved_ingredients %></span></div>
       <br>
-      <h3>You can pick up your bags at the following supermarkets:</h3>
+      <br>
+      <br>
+      <br>
+      <br>
+      <h2>Yayyy! Thats how many ingredients you have saved from being thrown away!</h2>
+      <br>
+      <h1>Thanks! You're Awesome.</h1>
+      <br>
+      <h3>You can pick up your bags at the following supermarket:</h3>
       <% @orders.each do |order| %>
         <li><%= order.recipe.title%> @<%= order.recipe.supermarket.address%></li>
       <% end %>
