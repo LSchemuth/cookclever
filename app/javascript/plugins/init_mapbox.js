@@ -31,7 +31,7 @@ const addCardHover = (map, markers) => {
 const fitMapToMarkers = (map, markers) => {
   const bounds = new mapboxgl.LngLatBounds();
   markers.forEach(marker => bounds.extend([ marker.lng, marker.lat ]));
-  map.fitBounds(bounds, { padding: 70, maxZoom: 11, duration: 0 });
+  map.fitBounds(bounds, { padding: 50, maxZoom: 13, duration: 0 });
   addCardHover(map, markers);
 };
 
