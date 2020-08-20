@@ -1,12 +1,24 @@
 <html>
-<h5>Hi Lotta,</h5>
-<p>thank you for your order!</p>
-<p>You have purchased these products:</p>
-<p> Please show the following QR-Code to the employees in the </p>
-<img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597840315/QRCodeWikipedia_spsahv.png" alt="2453-7853-2680-2384">
-<br>
-<p>You did something great today by saving ingredients from thrown away.</p>
-<p>Enjoy your food and have a nice day,</p>
-<p>Your Cookclever Team</p>
+<div class="container">
+  <h5>Hi Lotta,</h5>
+  <p>thank you for your order!</p>
+  <p>You have purchased these products:</p>
+  <% @user.baskets.first.orders.each do |order| %>
+    <li><%= order.recipe.title %></li>
+  <% end %>
+  <p> Please show the QR-Code to the employees in the following supermarkets</p>
+  <% @user.baskets.first.orders.each do |order| %>
+    <li><%= order.recipe.supermarket.name %> @ <%= order.recipe.supermarket.address %> </li>
+  <% end %>
+  <img src="https://res.cloudinary.com/dovh6vnvn/image/upload/v1597840315/QRCodeWikipedia_spsahv.png" alt="2453-7853-2680-2384">
+  <br>
+  <% saved_ingredients = 0 %>
+  <% @user.baskets.first.orders.each do |order| %>
+    <% saved_ingredients += order.ordered_amounts.count %>
+  <% end %>
+  <p>You did something great today by saving <%= saved_ingredients %> ingredients from being thrown away.</p>
+  <p>Enjoy your food and have a nice day,</p>
+  <p>Your Cookclever Team</p>
+</div>
 
 </html>
